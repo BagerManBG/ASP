@@ -81,7 +81,7 @@ using PicComputers.Data;
             WriteLiteral("    <p>");
             EndContext();
             BeginContext(236, 35, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "75c570209fa24b7fb4f96d199623b20f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a98dbc656284fdea801057f1e130396", async() => {
                 BeginContext(257, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -160,7 +160,7 @@ using PicComputers.Data;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(944, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2ed54e00b9c9464b8780800fb8d4c1a1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78005ad047644d46b46e2201aa2e9f99", async() => {
                 BeginContext(996, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -195,7 +195,7 @@ using PicComputers.Data;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1028, 66, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9460f82fe81a4430bcbae769d5b1483a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "92f89ce516404e41ae1a1d05f8df8f44", async() => {
                 BeginContext(1083, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -230,7 +230,7 @@ using PicComputers.Data;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1118, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f07f5c3ccd244f91867ef80715af9dd0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "579a94e0dbe14194bca63e68a4fb7d7e", async() => {
                 BeginContext(1172, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

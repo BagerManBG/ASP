@@ -8,6 +8,7 @@ namespace PicComputers.Models
 {
     public class ProductProperty
     {
+        [Key]
         [Required]
         public int ProductPropertyId { get; set; }
 
@@ -19,8 +20,6 @@ namespace PicComputers.Models
         [Required]
         public string Name { get; set; }
 
-        [StringLength(60, MinimumLength = 3)]
-        [Required]
-        public string Value { get; set; }
+        public ICollection<ProductPropertyValue> Values { get; set; } = new HashSet<ProductPropertyValue>();
     }
 }

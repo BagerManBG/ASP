@@ -254,15 +254,29 @@ namespace PicComputers.Data.Migrations
 
                     b.Property<int?>("ProductId");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(60);
-
                     b.HasKey("ProductPropertyId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductProperty");
+                });
+
+            modelBuilder.Entity("PicComputers.Models.ProductPropertyValue", b =>
+                {
+                    b.Property<int>("ProductPropertyValueId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductPropertyId");
+
+                    b.Property<string>("Value")
+                        .IsRequired();
+
+                    b.HasKey("ProductPropertyValueId");
+
+                    b.HasIndex("ProductPropertyId");
+
+                    b.ToTable("ProductPropertyValue");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -323,6 +337,14 @@ namespace PicComputers.Data.Migrations
                     b.HasOne("PicComputers.Models.Product")
                         .WithMany("PropertyValues")
                         .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("PicComputers.Models.ProductPropertyValue", b =>
+                {
+                    b.HasOne("PicComputers.Models.ProductProperty", "ProductProperty")
+                        .WithMany("Values")
+                        .HasForeignKey("ProductPropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

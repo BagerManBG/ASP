@@ -149,3 +149,8 @@ C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Deb
 C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Details.g.cshtml.cs
 C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Edit.g.cshtml.cs
 C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Index.g.cshtml.cs
+C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Values\Create.g.cshtml.cs
+C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Values\Delete.g.cshtml.cs
+C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Values\Details.g.cshtml.cs
+C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Values\Edit.g.cshtml.cs
+C:\Users\BagerMan\Desktop\ASP Cheat Stuff\repo\PicComputers\PicComputers\obj\Debug\netcoreapp2.1\Razor\Pages\ProductProperty\Values\Index.g.cshtml.cs
