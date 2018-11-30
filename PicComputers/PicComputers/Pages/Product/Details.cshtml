@@ -1,6 +1,8 @@
 ﻿@page
 @model PicComputers.Pages.Product.DetailsModel
 
+@using Microsoft.AspNetCore.Authorization
+
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -27,6 +29,9 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Product.ProductId">Edit</a> |
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Product.ProductId">Edit</a>
+    }
     <a asp-page="./Index">Back to List</a>
 </div>
