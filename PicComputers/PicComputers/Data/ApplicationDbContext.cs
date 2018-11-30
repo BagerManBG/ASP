@@ -13,5 +13,8 @@ namespace PicComputers.Data
             : base(options)
         {
         }
+        public DbSet<PicComputers.Models.ProductCategory> ProductCategory { get; set; }
+        public DbSet<PicComputers.Models.ProductProperty> ProductProperty { get; set; }
+        public DbSet<PicComputers.Models.Product> Product { get; set; }
     }
 }

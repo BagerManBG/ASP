@@ -9,7 +9,7 @@ namespace PicComputers.Models
     public class ProductProperty
     {
         [Required]
-        public int ID { get; set; }
+        public int ProductPropertyId { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
         [Required]

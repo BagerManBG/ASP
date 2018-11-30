@@ -198,6 +198,73 @@ namespace PicComputers.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("PicComputers.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryProductCategoryId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<float>("Price");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("CategoryProductCategoryId");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("PicComputers.Models.ProductCategory", b =>
+                {
+                    b.Property<int>("ProductCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.HasKey("ProductCategoryId");
+
+                    b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("PicComputers.Models.ProductProperty", b =>
+                {
+                    b.Property<int>("ProductPropertyId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<int?>("ProductId");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.HasKey("ProductPropertyId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductProperty");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("PicComputers.Models.ApplicationRole")
@@ -241,6 +308,21 @@ namespace PicComputers.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PicComputers.Models.Product", b =>
+                {
+                    b.HasOne("PicComputers.Models.ProductCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PicComputers.Models.ProductProperty", b =>
+                {
+                    b.HasOne("PicComputers.Models.Product")
+                        .WithMany("PropertyValues")
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

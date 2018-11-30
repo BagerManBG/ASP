@@ -1,0 +1,38 @@
+﻿@page
+@model PicComputers.Pages.ProductProperty.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductProperty</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductProperty.Key)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductProperty.Key)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductProperty.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductProperty.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductProperty.Value)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductProperty.Value)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ProductProperty.ProductPropertyId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

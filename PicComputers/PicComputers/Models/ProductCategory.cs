@@ -9,7 +9,7 @@ namespace PicComputers.Models
     public class ProductCategory
     {
         [Required]
-        public int ID { get; set; }
+        public int ProductCategoryId { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
         [Required]

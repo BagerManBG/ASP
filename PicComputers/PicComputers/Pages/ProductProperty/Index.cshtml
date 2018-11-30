@@ -1,0 +1,49 @@
+﻿@page
+@model PicComputers.Pages.ProductProperty.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductProperty[0].Key)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductProperty[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductProperty[0].Value)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProductProperty) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProductPropertyId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProductPropertyId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProductPropertyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

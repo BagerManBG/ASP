@@ -9,6 +9,6 @@ namespace PicComputers.Models
     public class Order
     {
         [Required]
-        public int ID { get; set; }
+        public int OrderId { get; set; }
     }
 }
