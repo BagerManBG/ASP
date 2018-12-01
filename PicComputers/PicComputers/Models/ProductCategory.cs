@@ -8,6 +8,7 @@ namespace PicComputers.Models
 {
     public class ProductCategory
     {
+        [Key]
         [Required]
         public int ProductCategoryId { get; set; }
 
@@ -18,5 +19,7 @@ namespace PicComputers.Models
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public string Name { get; set; }
+
+        public ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }

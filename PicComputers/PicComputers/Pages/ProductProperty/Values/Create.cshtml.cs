@@ -23,7 +23,7 @@ namespace PicComputers.Pages.ProductProperty.Values
 
         public IActionResult OnGet()
         {
-        ViewData["ProductPropertyId"] = new SelectList(_context.ProductProperty, "ProductPropertyId", "Key");
+            ViewData["ProductPropertyId"] = new SelectList(_context.ProductProperty, "ProductPropertyId", "Key");
             return Page();
         }
 

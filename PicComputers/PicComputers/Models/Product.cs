@@ -9,6 +9,7 @@ namespace PicComputers.Models
 {
     public class Product
     {
+        [Key]
         [Required]
         public int ProductId { get; set; }
 
@@ -22,9 +23,9 @@ namespace PicComputers.Models
         [Required]
         public float Price { get; set; }
 
-        [Required]
-        public ProductCategory Category { get; set; }
+        public int ProductCategoryId { get; set; }
+        public ProductCategory ProductCategory { get; set; }
 
-        public IList<ProductProperty> PropertyValues { get; set; }
+        public ICollection<ProductPropertyMap> ProductPropertyMaps { get; set; } = new HashSet<ProductPropertyMap>();
     }
 }

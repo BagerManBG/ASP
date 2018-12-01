@@ -6,10 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\ProductProperty\Values2\**" />
+    <Content Remove="Pages\ProductProperty\Values2\**" />
+    <EmbeddedResource Remove="Pages\ProductProperty\Values2\**" />
+    <None Remove="Pages\ProductProperty\Values2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\Migrations\20181129215147_Change1.cs" />
     <Compile Remove="Data\Migrations\20181129215147_Change1.Designer.cs" />
     <Compile Remove="Data\Migrations\20181129215225_Change2.cs" />
     <Compile Remove="Data\Migrations\20181129215225_Change2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130194151_ProductCategoryRealation.cs" />
+    <Compile Remove="Data\Migrations\20181130194151_ProductCategoryRealation.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130194319_ProductCategoryRealation.cs" />
+    <Compile Remove="Data\Migrations\20181130194319_ProductCategoryRealation.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,6 +17,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductPropertyValue[0].Value)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPropertyValue[0].ProductProperty)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,12 +27,15 @@
 @foreach (var item in Model.ProductPropertyValue) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ProductProperty.Key)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Value">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Value">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Value">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ProductPropertyValueId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProductPropertyValueId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProductPropertyValueId">Delete</a>
             </td>
         </tr>
 }

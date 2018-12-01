@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PicComputers.Data;
 
 namespace PicComputers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181130212236_ProductPropertyMapManyToMany")]
+    partial class ProductPropertyMapManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,11 +263,11 @@ namespace PicComputers.Data.Migrations
                 {
                     b.Property<int>("ProductId");
 
-                    b.Property<int>("ProductPropertyValueId");
+                    b.Property<int>("ProductPropertyId");
 
-                    b.HasKey("ProductId", "ProductPropertyValueId");
+                    b.HasKey("ProductId", "ProductPropertyId");
 
-                    b.HasIndex("ProductPropertyValueId");
+                    b.HasIndex("ProductPropertyId");
 
                     b.ToTable("ProductPropertyMap");
                 });
@@ -348,9 +350,9 @@ namespace PicComputers.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PicComputers.Models.ProductPropertyValue", "ProductPropertyValue")
+                    b.HasOne("PicComputers.Models.ProductProperty", "ProductProperty")
                         .WithMany("ProductPropertyMaps")
-                        .HasForeignKey("ProductPropertyValueId")
+                        .HasForeignKey("ProductPropertyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

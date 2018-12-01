@@ -8,6 +8,7 @@ namespace PicComputers.Models
 {
     public class Cart
     {
+        [Key]
         [Required]
         public int CartId { get; set; }
     }

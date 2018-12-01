@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PicComputers.Data;
 
 namespace PicComputers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181130194405_ProductCategoryRealation")]
+    partial class ProductCategoryRealation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,19 +259,6 @@ namespace PicComputers.Data.Migrations
                     b.ToTable("ProductProperty");
                 });
 
-            modelBuilder.Entity("PicComputers.Models.ProductPropertyMap", b =>
-                {
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("ProductPropertyValueId");
-
-                    b.HasKey("ProductId", "ProductPropertyValueId");
-
-                    b.HasIndex("ProductPropertyValueId");
-
-                    b.ToTable("ProductPropertyMap");
-                });
-
             modelBuilder.Entity("PicComputers.Models.ProductPropertyValue", b =>
                 {
                     b.Property<int>("ProductPropertyValueId")
@@ -339,19 +328,6 @@ namespace PicComputers.Data.Migrations
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("PicComputers.Models.ProductPropertyMap", b =>
-                {
-                    b.HasOne("PicComputers.Models.Product", "Product")
-                        .WithMany("ProductPropertyMaps")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PicComputers.Models.ProductPropertyValue", "ProductPropertyValue")
-                        .WithMany("ProductPropertyMaps")
-                        .HasForeignKey("ProductPropertyValueId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PicComputers.Models.ProductPropertyValue", b =>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PicComputers.Data;
 using PicComputers.Models;
 
@@ -17,23 +18,38 @@ namespace PicComputers.Pages.Product
         private readonly PicComputers.Data.ApplicationDbContext _context;
 
         public CreateModel(PicComputers.Data.ApplicationDbContext context)
-        {
-            _context = context;
+        {            
+            _context = context;          
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        [BindProperty]
+        public IEnumerable<bool> Values { get; set; }
 
         [BindProperty]
         public Models.Product Product { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnGet()
         {
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "ProductCategoryId", "Key");
+            ViewData["Properties"] = _context.ProductProperty;
+            ViewData["Values"] = _context.ProductPropertyValue.Include(a => a.ProductProperty);
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {    
             if (!ModelState.IsValid)
             {
                 return Page();
+            }   
+            
+            foreach (var value in _context.ProductPropertyValue)
+            {
+                if (Request.Form[value.Value].Count > 0)
+                {
+                    var map = new ProductPropertyMap(Product.ProductId, Product, value.ProductPropertyValueId, value);
+                    _context.ProductPropertyMap.Add(map);
+                }
             }
 
             _context.Product.Add(Product);

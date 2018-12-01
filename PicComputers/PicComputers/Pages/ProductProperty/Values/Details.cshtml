@@ -18,6 +18,12 @@
         <dd>
             @Html.DisplayFor(model => model.ProductPropertyValue.Value)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPropertyValue.ProductProperty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductPropertyValue.ProductProperty.Key)
+        </dd>
     </dl>
 </div>
 <div>

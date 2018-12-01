@@ -8,6 +8,7 @@ namespace PicComputers.Models
 {
     public class Order
     {
+        [Key]
         [Required]
         public int OrderId { get; set; }
     }
