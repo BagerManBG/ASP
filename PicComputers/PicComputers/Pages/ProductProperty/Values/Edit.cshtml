@@ -16,6 +16,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProductPropertyValue.ProductPropertyValueId" />
             <div class="form-group">
+                <label asp-for="ProductPropertyValue.Key" class="control-label"></label>
+                <input asp-for="ProductPropertyValue.Key" class="form-control" />
+                <span asp-validation-for="ProductPropertyValue.Key" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ProductPropertyValue.Value" class="control-label"></label>
                 <input asp-for="ProductPropertyValue.Value" class="form-control" />
                 <span asp-validation-for="ProductPropertyValue.Value" class="text-danger"></span>

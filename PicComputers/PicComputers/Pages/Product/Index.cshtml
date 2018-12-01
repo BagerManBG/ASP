@@ -6,6 +6,10 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+@section scripts {
+    <script src="~/js/produc-search-values.js" asp-append-version="true"></script>
+}
+
 <h2>Index</h2>
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
@@ -22,6 +26,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].Price)
             </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Details
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +46,12 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                </td>
+                <td>
+                    N/A
+                </td>
+                <td>
                     <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
@@ -44,3 +60,30 @@
         }
     </tbody>
 </table>
+
+<div class="product-search-values">
+    <h3>Search</h3>
+    @foreach (var property in ViewBag.Properties)
+    {
+        <p>@property.Name</p>
+        @foreach (var value in ViewBag.Values)
+        {
+            @if (value.ProductProperty.Key == property.Key)
+            {
+                <label>
+                    <input type="checkbox" name="@value.Key" class="search-value" id="@value.Key" style="margin-left: 5px">
+                    <span style="margin-left: 2px">@value.Value</span>
+                </label>
+            }
+        }
+    }
+    <div class="form-group" style="margin-top: 20px;">
+        <div>
+            <input class="form-control product-search-bar" style="width: auto; display: inline-block" size="30"/>
+            <select class="form-control product-search-category" style="width: auto; display: inline-block" asp-items="ViewBag.ProductCategoryId">
+                <option value="-1">All</option>
+            </select>
+            <button class="btn product-search-submit">Search</button>
+        </div>        
+    </div>
+</div>

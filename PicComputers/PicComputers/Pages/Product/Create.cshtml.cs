@@ -30,7 +30,7 @@ namespace PicComputers.Pages.Product
 
         public IActionResult OnGet()
         {
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "ProductCategoryId", "Key");
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "ProductCategoryId", "Name");
             ViewData["Properties"] = _context.ProductProperty;
             ViewData["Values"] = _context.ProductPropertyValue.Include(a => a.ProductProperty);
             return Page();
@@ -45,7 +45,7 @@ namespace PicComputers.Pages.Product
             
             foreach (var value in _context.ProductPropertyValue)
             {
-                if (Request.Form[value.Value].Count > 0)
+                if (Request.Form[value.Key].Count > 0)
                 {
                     var map = new ProductPropertyMap(Product.ProductId, Product, value.ProductPropertyValueId, value);
                     _context.ProductPropertyMap.Add(map);

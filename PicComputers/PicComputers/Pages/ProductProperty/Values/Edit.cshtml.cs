@@ -38,7 +38,8 @@ namespace PicComputers.Pages.ProductProperty.Values
             {
                 return NotFound();
             }
-           ViewData["ProductPropertyId"] = new SelectList(_context.ProductProperty, "ProductPropertyId", "Key");
+
+            ViewData["ProductPropertyId"] = new SelectList(_context.ProductProperty, "ProductPropertyId", "Name");
             return Page();
         }
 

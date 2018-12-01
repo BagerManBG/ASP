@@ -15,13 +15,18 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="ProductPropertyValue.Key" class="control-label"></label>
+                <input asp-for="ProductPropertyValue.Key" class="form-control" />
+                <span asp-validation-for="ProductPropertyValue.Key" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ProductPropertyValue.Value" class="control-label"></label>
                 <input asp-for="ProductPropertyValue.Value" class="form-control" />
                 <span asp-validation-for="ProductPropertyValue.Value" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProductPropertyValue.ProductPropertyId" class="control-label"></label>
-                <select asp-for="ProductPropertyValue.ProductPropertyId" class ="form-control" asp-items="ViewBag.ProductPropertyId"></select>
+                <select asp-for="ProductPropertyValue.ProductPropertyId" class="form-control" asp-items="ViewBag.ProductPropertyId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

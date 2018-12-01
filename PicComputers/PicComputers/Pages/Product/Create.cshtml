@@ -36,14 +36,13 @@
                     @if (value.ProductProperty.Key == property.Key)
                     {
                         <label>
-                            <input type="checkbox" name="@value.Value" style="margin-left: 5px" >
+                            <input type="checkbox" name="@value.Key" style="margin-left: 5px" >
                             <span style="margin-left: 2px">@value.Value</span>
                         </label>
                     }
                 }
         
-}
-
+            }
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

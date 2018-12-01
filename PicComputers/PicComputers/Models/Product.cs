@@ -23,7 +23,7 @@ namespace PicComputers.Models
         [Required]
         public float Price { get; set; }
 
-        public int ProductCategoryId { get; set; }
+        public int? ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }
 
         public ICollection<ProductPropertyMap> ProductPropertyMaps { get; set; } = new HashSet<ProductPropertyMap>();

@@ -30,8 +30,7 @@ namespace PicComputers.Data
                 .HasMany(a => a.Products)
                 .WithOne(a => a.ProductCategory)
                 .HasForeignKey(a => a.ProductCategoryId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<ProductPropertyMap>()
                 .HasKey(a => new { a.ProductId, a.ProductPropertyValueId });

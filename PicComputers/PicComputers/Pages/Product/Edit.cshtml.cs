@@ -23,6 +23,9 @@ namespace PicComputers.Pages.Product
         }
 
         [BindProperty]
+        public IEnumerable<bool> Values { get; set; }
+
+        [BindProperty]
         public Models.Product Product { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -38,6 +41,31 @@ namespace PicComputers.Pages.Product
             {
                 return NotFound();
             }
+
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "ProductCategoryId", "Name");
+            ViewData["Properties"] = _context.ProductProperty;
+
+            IList<ProductPropertyValue> ValuesList = new List<ProductPropertyValue>();
+
+            var values = _context.ProductPropertyValue.Include(a => a.ProductProperty);
+
+            for (int i = 0; i < values.Count(); i++)
+            {
+                ProductPropertyValue value = values.ToList()[i];
+
+                var map = await _context.ProductPropertyMap
+                    .FindAsync(Product.ProductId, value.ProductPropertyValueId);
+
+                if (map != null)
+                {
+                    value.isSelected = true;
+                }
+                
+                ValuesList.Add(value);
+            }
+
+            ViewData["Values"] = ValuesList;
+
             return Page();
         }
 
@@ -46,6 +74,20 @@ namespace PicComputers.Pages.Product
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+
+            var maps = _context.ProductPropertyMap
+                .Where(a => a.ProductId == Product.ProductId);
+
+            _context.ProductPropertyMap.RemoveRange(maps);
+
+            foreach (var value in _context.ProductPropertyValue)
+            {
+                if (Request.Form[value.Key].Count > 0)
+                {
+                    var map = new ProductPropertyMap(Product.ProductId, Product, value.ProductPropertyValueId, value);
+                    _context.ProductPropertyMap.Add(map);
+                }
             }
 
             _context.Attach(Product).State = EntityState.Modified;
