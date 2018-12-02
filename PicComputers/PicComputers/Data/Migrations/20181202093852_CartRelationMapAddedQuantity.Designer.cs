@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PicComputers.Data;
 
 namespace PicComputers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181202093852_CartRelationMapAddedQuantity")]
+    partial class CartRelationMapAddedQuantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,34 +219,6 @@ namespace PicComputers.Data.Migrations
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("PicComputers.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<string>("CustomerId")
-                        .IsRequired();
-
-                    b.Property<DateTime>("DatePlaced");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(10);
-
-                    b.Property<float>("TotalPrice");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("PicComputers.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -298,21 +272,6 @@ namespace PicComputers.Data.Migrations
                     b.HasKey("ProductCategoryId");
 
                     b.ToTable("ProductCategory");
-                });
-
-            modelBuilder.Entity("PicComputers.Models.ProductOrderMap", b =>
-                {
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<int>("ProductQuantity");
-
-                    b.HasKey("ProductId", "OrderId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("ProductOrderMap");
                 });
 
             modelBuilder.Entity("PicComputers.Models.ProductProperty", b =>
@@ -421,14 +380,6 @@ namespace PicComputers.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("PicComputers.Models.Order", b =>
-                {
-                    b.HasOne("PicComputers.Models.ApplicationUser", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("PicComputers.Models.Product", b =>
                 {
                     b.HasOne("PicComputers.Models.ProductCategory", "ProductCategory")
@@ -446,19 +397,6 @@ namespace PicComputers.Data.Migrations
 
                     b.HasOne("PicComputers.Models.Product", "Product")
                         .WithMany("ProductCartMaps")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PicComputers.Models.ProductOrderMap", b =>
-                {
-                    b.HasOne("PicComputers.Models.Order", "Order")
-                        .WithMany("ProductOrderMaps")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PicComputers.Models.Product", "Product")
-                        .WithMany("ProductOrderMaps")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -1,0 +1,96 @@
+﻿@page
+@model PicComputers.Pages.Order.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order #@Model.Order.OrderId</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Customer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Customer.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.DatePlaced)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.DatePlaced)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.TotalPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.TotalPrice)
+        </dd>
+    </dl>
+</div>
+@if (Model.Maps.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Total Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Maps)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductTotalPrice)
+                    </td>
+                </tr>
+            }
+            <tr style="background-color: #efefef;">
+                <td><span>Total Price: </span></td>
+                <td></td>
+                <td></td>
+                <td>@Html.DisplayFor(modelItem => Model.Maps[0].Order.TotalPrice)</td>
+            </tr>
+        </tbody>
+    </table>
+}
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

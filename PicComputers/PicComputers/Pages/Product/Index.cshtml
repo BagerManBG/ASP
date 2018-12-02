@@ -10,7 +10,12 @@
     <script src="~/js/produc-search-values.js" asp-append-version="true"></script>
 }
 
-<h2>Index</h2>
+<h2>Products</h2>
+
+@if (TempData[IndexModel.MessageKey] is string message)
+{
+    <div class="alert alert-success">@message Added to <a asp-page="/Cart/Index">Cart</a>!</div>
+}
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
@@ -33,6 +38,10 @@
                 Details
             </th>
             <th></th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -52,10 +61,24 @@
                     N/A
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <span>|</span>
+                        <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a>
+                        <span>|</span>
+                        <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    }
                 </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="ProductId" value="@item.ProductId" />
+                            <input type="submit" value="Add to cart" class="btn" />
+                        </form>
+                    </td>
+                }
             </tr>
         }
     </tbody>
@@ -79,11 +102,11 @@
     }
     <div class="form-group" style="margin-top: 20px;">
         <div>
-            <input class="form-control product-search-bar" style="width: auto; display: inline-block" size="30"/>
+            <input class="form-control product-search-bar" style="width: auto; display: inline-block" size="30" />
             <select class="form-control product-search-category" style="width: auto; display: inline-block" asp-items="ViewBag.ProductCategoryId">
                 <option value="-1">All</option>
             </select>
             <button class="btn product-search-submit">Search</button>
-        </div>        
+        </div>
     </div>
 </div>

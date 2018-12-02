@@ -1,0 +1,57 @@
+﻿@page
+@model PicComputers.Pages.Order.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].DatePlaced)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePlaced)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

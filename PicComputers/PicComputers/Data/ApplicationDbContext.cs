@@ -45,6 +45,39 @@ namespace PicComputers.Data
                 .HasOne(bc => bc.ProductPropertyValue)
                 .WithMany(c => c.ProductPropertyMaps)
                 .HasForeignKey(bc => bc.ProductPropertyValueId);
+
+            modelBuilder.Entity<ProductCartMap>()
+                .HasKey(a => new { a.ProductId, a.CartId });
+
+            modelBuilder.Entity<ProductCartMap>()
+                .HasOne(bc => bc.Product)
+                .WithMany(b => b.ProductCartMaps)
+                .HasForeignKey(bc => bc.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProductCartMap>()
+                .HasOne(bc => bc.Cart)
+                .WithMany(c => c.ProductCartMaps)
+                .HasForeignKey(bc => bc.CartId);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(p => p.Cart)
+                .WithOne(i => i.Customer)
+                .HasForeignKey<Cart>(b => b.UserId);
+
+            modelBuilder.Entity<ProductOrderMap>()
+                .HasKey(a => new { a.ProductId, a.OrderId });
+
+            modelBuilder.Entity<ProductOrderMap>()
+                .HasOne(bc => bc.Product)
+                .WithMany(b => b.ProductOrderMaps)
+                .HasForeignKey(bc => bc.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProductOrderMap>()
+                .HasOne(bc => bc.Order)
+                .WithMany(c => c.ProductOrderMaps)
+                .HasForeignKey(bc => bc.OrderId);
         }
 
         public DbSet<PicComputers.Models.ProductCategory> ProductCategory { get; set; }
@@ -52,5 +85,10 @@ namespace PicComputers.Data
         public DbSet<PicComputers.Models.Product> Product { get; set; }
         public DbSet<PicComputers.Models.ProductPropertyValue> ProductPropertyValue { get; set; }
         public DbSet<PicComputers.Models.ProductPropertyMap> ProductPropertyMap { get; set; }
+        public DbSet<PicComputers.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<PicComputers.Models.Cart> Cart { get; set; }
+        public DbSet<PicComputers.Models.ProductCartMap> ProductCartMap { get; set; }
+        public DbSet<PicComputers.Models.Order> Order { get; set; }
+        public DbSet<PicComputers.Models.ProductOrderMap> ProductOrderMap { get; set; }
     }
 }

@@ -10,6 +10,9 @@
         $(`.product-search-values input.search-value[name=${key}]`).prop('checked', true);
     });
 
+    searchbar.val(url.searchParams.get('search'));
+    search_category.find(`[value=${url.searchParams.get('category')}]`).prop('selected', true);
+
     checkboxes.click(e => {
         $this = $(e.target)
 

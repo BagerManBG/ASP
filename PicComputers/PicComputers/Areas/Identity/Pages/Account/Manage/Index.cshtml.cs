@@ -8,21 +8,25 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using PicComputers.Models;
 
 namespace PicComputers.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
+        private readonly PicComputers.Data.ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public IndexModel(
+            PicComputers.Data.ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -95,7 +99,8 @@ namespace PicComputers.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Street = user.Street,
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -136,6 +141,16 @@ namespace PicComputers.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
+            }
+
+            var u = await _context.ApplicationUser.FindAsync(user.Id);
+            var street = u.Street;
+            if (Input.Street != street)
+            {
+                u.Street = Input.Street;
+
+                _context.Attach(u).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
 
             await _signInManager.RefreshSignInAsync(user);

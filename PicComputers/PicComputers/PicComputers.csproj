@@ -23,6 +23,8 @@
     <Compile Remove="Data\Migrations\20181130194319_ProductCategoryRealation.Designer.cs" />
     <Compile Remove="Data\Migrations\20181201073839_ProductCategoryOnDeleteChange.cs" />
     <Compile Remove="Data\Migrations\20181201073839_ProductCategoryOnDeleteChange.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181202115531_ProductCartTotalPriceDataTypeChange.cs" />
+    <Compile Remove="Data\Migrations\20181202115531_ProductCartTotalPriceDataTypeChange.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

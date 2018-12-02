@@ -27,5 +27,7 @@ namespace PicComputers.Models
         public ProductCategory ProductCategory { get; set; }
 
         public ICollection<ProductPropertyMap> ProductPropertyMaps { get; set; } = new HashSet<ProductPropertyMap>();
+        public ICollection<ProductCartMap> ProductCartMaps { get; set; } = new HashSet<ProductCartMap>();
+        public ICollection<ProductOrderMap> ProductOrderMaps { get; set; } = new HashSet<ProductOrderMap>();
     }
 }
